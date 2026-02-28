@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        /* Base academic styling for typography and layout */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #ffffff;
+        }
+
+        /* Profile section container */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 2.5rem;
+        }
+
+        /* Profile image placeholder */
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background-color: #f6f8fa;
+            object-fit: cover;
+            border: 1px solid #e1e4e8;
+        }
+
+        /* Profile text styling */
+        .profile-info h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .profile-info h2 {
+            margin: 0 0 1rem 0;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #586069;
+        }
+
+        .profile-info p {
+            margin-bottom: 0.8rem;
+            text-align: justify;
+        }
+
+        /* Global link styling */
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Social and contact links layout */
+        .contact-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        /* Section layout */
+        section {
+            margin-bottom: 3.5rem;
+        }
+
+        section h3 {
+            font-size: 1.6rem;
+            border-bottom: 2px solid #eaecef;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #24292e;
+            font-weight: 600;
+        }
+
+        /* Academic publication and project item layout */
+        .pub-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Thumbnail placeholder for projects */
+        .pub-img {
+            width: 180px;
+            height: 110px;
+            background-color: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6a737d;
+            font-size: 0.9rem;
+            overflow: hidden;
+        }
+
+        .pub-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Content area for publications */
+        .pub-content {
+            flex-grow: 1;
+        }
+
+        .pub-title {
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin: 0 0 0.3rem 0;
+        }
+
+        .pub-authors {
+            color: #24292e;
+            font-size: 0.95rem;
+            margin: 0 0 0.3rem 0;
+        }
+
+        /* Highlight the author's name */
+        .me {
+            font-weight: 600;
+            color: #111;
+        }
+
+        .pub-venue {
+            font-style: italic;
+            color: #586069;
+            font-size: 0.95rem;
+            margin: 0 0 0.6rem 0;
+        }
+
+        .pub-desc {
+            font-size: 0.95rem;
+            color: #586069;
+            margin: 0 0 0.8rem 0;
+        }
+
+        /* Buttons for PDF, Code, Video, etc. */
+        .pub-links a {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border: 1px solid #d1d5da;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #24292e;
+            margin-right: 0.5rem;
+            background-color: #fafbfc;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .pub-links a:hover {
+            background-color: #f3f4f6;
+            text-decoration: none;
+        }
+
+        /* Experience list styling */
+        .exp-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.3rem;
+        }
+
+        .exp-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .exp-meta {
+            color: #586069;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive design for mobile devices */
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .pub-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .pub-img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16/9;
+            }
+            .contact-links {
+                justify-content: center;
+            }
+            .exp-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile">
+        <div class="profile-img">
+            <span style="display: flex; height: 100%; align-items: center; justify-content: center; color: #999;">Photo</span>
+        </div>
+        <div class="profile-info">
+            <h1>你的名字</h1>
+            <h2>Humanoid Robotics & Embodied AI</h2>
+            <p>I am dedicated to tackling complex engineering challenges in the field of robotics. My current research focuses on <strong>Motion Control</strong>, <strong>Imitation Learning</strong>, and the hardware-software architecture of humanoid robots (such as the Unitree G1). I am particularly interested in developing robust Vision-Language-Action (VLA) systems and exploring advanced policy networks like Mamba and FSQ.</p>
+            <p>Prior to diving into robotics, I accumulated extensive experience in Private Equity fund management, overseeing product issuance, operations, and trading. This rigorous professional background shaped my data-driven approach and ability to execute complex projects under pressure.</p>
+            <div class="contact-links">
+                <a href="mailto:your.email@example.com">Email</a> / 
+                <a href="https://github.com/你的用户名" target="_blank">GitHub</a> / 
+                <a href="https://twitter.com/yourhandle" target="_blank">Twitter</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="research">
+        <h3>Research & Projects</h3>
+
+        <div class="pub-item">
+            <div class="pub-img">
+                Teaser Image
+            </div>
+            <div class="pub-content">
+                <p class="pub-title">RSS 2026 Submission (In Preparation)</p>
+                <p class="pub-authors"><span class="me">Your Name</span>, Co-author 1, Co-author 2</p>
+                <p class="pub-venue">Robotics: Science and Systems (RSS), 2026</p>
+                <p class="pub-desc">Focusing on novel frameworks for humanoid robot control and motion architectures. Finalizing the paper drafting, teaser design, and acknowledgement formatting.</p>
+                <div class="pub-links">
+                    <a href="#">PDF (Coming Soon)</a>
+                    <a href="#">Project Page</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub-item">
+            <div class="pub-img">
+                Teleop System
+            </div>
+            <div class="pub-content">
+                <p class="pub-title">Closed-Loop Teleoperation & VLA Data Pipeline for Unitree G1</p>
+                <p class="pub-authors">Independent Project / Collaboration</p>
+                <p class="pub-venue">Embodied AI Systems</p>
+                <p class="pub-desc">Engineered a teleoperation system utilizing PICO VR headsets. Addressed critical motion retargeting challenges for operators of varying heights to establish a stable and high-quality Vision-Language-Action (VLA) data collection pipeline.</p>
+                <div class="pub-links">
+                    <a href="#">Code</a>
+                    <a href="#">Video</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub-item">
+            <div class="pub-img">
+                Mamba+FSQ
+            </div>
+            <div class="pub-content">
+                <p class="pub-title">Continuous Motion Control Policy via Mamba and FSQ</p>
+                <p class="pub-authors">Motion Control Architecture</p>
+                <p class="pub-venue">Technical Research</p>
+                <p class="pub-desc">Investigating state-space models (Mamba) combined with Finite Scalar Quantization (FSQ) to optimize low-level control policies. The goal is to significantly enhance the dynamic response and continuity of humanoid motions.</p>
+                <div class="pub-links">
+                    <a href="#">Notes</a>
+                    <a href="#">GitHub</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pub-item">
+            <div class="pub-img">
+                SolidWorks
+            </div>
+            <div class="pub-content">
+                <p class="pub-title">Hardware-Software Integration & 3D Modeling</p>
+                <p class="pub-authors">Hardware Design</p>
+                <p class="pub-venue">Engineering Practice</p>
+                <p class="pub-desc">Proficient in processing SLDPRT files and utilizing SolidWorks for mechanical evaluation, ensuring tight integration between control algorithms and physical constraints.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="experience">
+        <h3>Experience</h3>
+        
+        <div class="exp-item">
+            <div class="exp-header">
+                <div class="exp-title">Independent Robotics Researcher</div>
+                <div class="exp-meta">Present</div>
+            </div>
+            <p style="margin: 0.5rem 0 0 0; color: #586069; font-size: 0.95rem;">Focusing on humanoid robotics, motion control algorithms, and embodied AI infrastructure using tools like Google Antigravity IDE.</p>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-header">
+                <div class="exp-title">Private Equity Operations & Management</div>
+                <div class="exp-meta">Previous</div>
+            </div>
+            <p style="margin: 0.5rem 0 0 0; color: #586069; font-size: 0.95rem;">Directed the full lifecycle of private equity securities, including product issuance, operations, information disclosure, and trading execution.</p>
+        </div>
+    </section>
+
+    <footer style="text-align: center; margin-top: 4rem; color: #6a737d; font-size: 0.9rem; border-top: 1px solid #eaecef; padding-top: 2rem;">
+        <p>&copy; 2026 你的名字. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
