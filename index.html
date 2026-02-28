@@ -1,331 +1,680 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Le Ma | Humanoid Robotics & Embodied AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
-        /* Base academic styling for typography and layout */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #24292e;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-            background-color: #ffffff;
+        :root {
+            --bg-color: #ffffff;
+            --bg-secondary: #fefefe;
+            --text-main: #111827;
+            --text-muted: #4b5563;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --card-bg: #ffffff;
+            --card-border: #e5e7eb;
+            --gradient-start: #3b82f6;
+            --gradient-end: #10b981;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
-        /* Profile section container */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top right, rgba(37, 99, 235, 0.03), transparent 500px),
+                radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.03), transparent 500px);
+            margin: 0 auto;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Profile section */
         .profile {
             display: flex;
             align-items: center;
-            gap: 2.5rem;
-            margin-bottom: 2.5rem;
-            border-bottom: 1px solid #eaecef;
-            padding-bottom: 2.5rem;
+            gap: 3.5rem;
+            margin-bottom: 5rem;
+            animation: fadeInDown 0.8s ease-out;
         }
 
-        /* Profile image placeholder */
         .profile-img {
-            width: 220px;
-            height: 220px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            background-color: #f6f8fa;
-            object-fit: cover;
-            border: 1px solid #e1e4e8;
+            background: #f3f4f6;
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
         }
 
-        /* Profile text styling */
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .profile-img:hover::before {
+            opacity: 1;
+        }
+
         .profile-info h1 {
-            margin: 0 0 0.5rem 0;
-            font-size: 2.4rem;
-            font-weight: 600;
-            color: #111;
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
         }
 
         .profile-info h2 {
-            margin: 0 0 1rem 0;
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: #586069;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .profile-info p {
-            margin-bottom: 0.8rem;
-            text-align: justify;
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
 
-        /* Global link styling */
-        a {
-            color: #0366d6;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Social and contact links layout */
-        .contact-links {
-            display: flex;
-            gap: 1.2rem;
-            margin-top: 1rem;
-            font-size: 0.95rem;
-        }
-
-        /* Section layout */
-        section {
-            margin-bottom: 3.5rem;
-        }
-
-        section h3 {
-            font-size: 1.6rem;
-            border-bottom: 2px solid #eaecef;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            color: #24292e;
+        .profile-info strong {
+            color: var(--text-main);
             font-weight: 600;
         }
 
-        /* Academic publication and project item layout */
-        .pub-item {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.2s ease;
         }
 
-        /* Thumbnail placeholder for projects */
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* Contact Links */
+        .contact-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-links a:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 5rem;
+            animation: fadeInUp 1s ease-out both;
+        }
+
+        section:nth-of-type(1) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-of-type(2) {
+            animation-delay: 0.4s;
+        }
+
+        section h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-main);
+        }
+
+        section h3::after {
+            content: '';
+            display: block;
+            height: 2px;
+            background: linear-gradient(90deg, #e5e7eb, transparent);
+            flex-grow: 1;
+            min-width: 100px;
+        }
+
+        /* Publications & Projects Card */
+        .pub-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 1.8rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pub-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .pub-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: #d1d5db;
+        }
+
+        .pub-item:hover::before {
+            opacity: 1;
+        }
+
         .pub-img {
-            width: 180px;
-            height: 110px;
-            background-color: #f6f8fa;
-            border: 1px solid #e1e4e8;
-            border-radius: 6px;
+            width: 240px;
+            height: 140px;
+            background: #f3f4f6;
+            border-radius: 8px;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6a737d;
-            font-size: 0.9rem;
+            color: #9ca3af;
+            font-family: 'Outfit', sans-serif;
             overflow: hidden;
+            border: 1px solid var(--card-border);
         }
 
         .pub-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* Content area for publications */
+        .pub-item:hover .pub-img img {
+            transform: scale(1.08);
+        }
+
         .pub-content {
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .pub-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
             font-weight: 600;
-            font-size: 1.15rem;
-            margin: 0 0 0.3rem 0;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .pub-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .pub-title a:hover {
+            color: var(--accent);
         }
 
         .pub-authors {
-            color: #24292e;
             font-size: 0.95rem;
-            margin: 0 0 0.3rem 0;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
         }
 
-        /* Highlight the author's name */
+        .pub-authors a {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            text-underline-offset: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .pub-authors a:hover {
+            color: var(--text-main);
+            text-decoration-color: var(--card-border);
+        }
+
         .me {
-            font-weight: 600;
-            color: #111;
+            color: var(--text-main);
+            font-weight: 700;
         }
 
         .pub-venue {
-            font-style: italic;
-            color: #586069;
-            font-size: 0.95rem;
-            margin: 0 0 0.6rem 0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #10b981;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            background: #ecfdf5;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
         }
 
         .pub-desc {
             font-size: 0.95rem;
-            color: #586069;
-            margin: 0 0 0.8rem 0;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
         }
 
-        /* Buttons for PDF, Code, Video, etc. */
+        .pub-links {
+            margin-top: auto;
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
         .pub-links a {
-            display: inline-block;
-            padding: 0.2rem 0.8rem;
-            border: 1px solid #d1d5da;
-            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
             font-size: 0.85rem;
-            color: #24292e;
-            margin-right: 0.5rem;
-            background-color: #fafbfc;
-            font-weight: 500;
-            transition: background-color 0.2s;
+            font-weight: 600;
+            background-color: #f8fafc;
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            transition: all 0.2s ease;
         }
 
         .pub-links a:hover {
-            background-color: #f3f4f6;
-            text-decoration: none;
+            border-color: #cbd5e1;
+            background-color: #f1f5f9;
+            color: var(--accent);
         }
 
-        /* Experience list styling */
+        /* Experience section */
         .exp-item {
-            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2.5rem;
         }
-        
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 2px solid var(--accent);
+            z-index: 2;
+        }
+
+        .exp-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 20px;
+            bottom: -30px;
+            width: 2px;
+            background: var(--card-border);
+            z-index: 1;
+        }
+
+        .exp-item:last-child::after {
+            display: none;
+        }
+
         .exp-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
         }
 
         .exp-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
             font-weight: 600;
-            font-size: 1.1rem;
+            color: var(--text-main);
         }
-        
+
         .exp-meta {
-            color: #586069;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: #f3f4f6;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            border: 1px solid var(--card-border);
+        }
+
+        .exp-item p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem 0;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
-        /* Responsive design for mobile devices */
+        /* Keyframes */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .profile {
                 flex-direction: column;
                 text-align: center;
-                gap: 1.5rem;
+                gap: 2rem;
             }
-            .pub-item {
-                flex-direction: column;
-                gap: 1rem;
+
+            .profile-info h1 {
+                font-size: 2.5rem;
             }
-            .pub-img {
-                width: 100%;
-                height: auto;
-                aspect-ratio: 16/9;
-            }
-            .contact-links {
+
+            .profile-info h2 {
                 justify-content: center;
             }
+
+            .contact-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .pub-item {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.2rem;
+            }
+
+            .pub-img {
+                width: 100%;
+                height: 180px;
+            }
+
             .exp-header {
                 flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="profile">
-        <div class="profile-img">
-            <span style="display: flex; height: 100%; align-items: center; justify-content: center; color: #999;">Photo</span>
-        </div>
-        <div class="profile-info">
-            <h1>你的名字</h1>
-            <h2>Humanoid Robotics & Embodied AI</h2>
-            <p>I am dedicated to tackling complex engineering challenges in the field of robotics. My current research focuses on <strong>Motion Control</strong>, <strong>Imitation Learning</strong>, and the hardware-software architecture of humanoid robots (such as the Unitree G1). I am particularly interested in developing robust Vision-Language-Action (VLA) systems and exploring advanced policy networks like Mamba and FSQ.</p>
-            <p>Prior to diving into robotics, I accumulated extensive experience in Private Equity fund management, overseeing product issuance, operations, and trading. This rigorous professional background shaped my data-driven approach and ability to execute complex projects under pressure.</p>
-            <div class="contact-links">
-                <a href="mailto:your.email@example.com">Email</a> / 
-                <a href="https://github.com/你的用户名" target="_blank">GitHub</a> / 
-                <a href="https://twitter.com/yourhandle" target="_blank">Twitter</a>
+    <div class="container">
+        <div class="profile">
+            <div class="profile-img">
+                <img src="assets/images/profile_pic.jpg" alt="Le Ma"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+            </div>
+            <div class="profile-info">
+                <h1>Le Ma</h1>
+                <h2
+                    style="font-size: 1.1rem; color: var(--text-muted); margin-top: -0.2rem; margin-bottom: 0.5rem; display: block; font-weight: 500;">
+                    Senior Research Engineer @BIGAI</h2>
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                        <path d="M12 12 2.1 7.1"></path>
+                        <path d="M12 12l9.9 4.9"></path>
+                    </svg>
+                    Humanoid Robotics & Embodied AI
+                </h2>
+                <p>I am currently a Senior Research Engineer at the <strong>Beijing Institute for General Artificial
+                        Intelligence (BIGAI)</strong>, in <a href="https://siyuanhuang.com/" target="_blank">Dr. Siyuan
+                        Huang's </a> group. I received my Master's degree from
+                    the <strong>Hong Kong
+                        University of Science and Technology (HKUST)</strong> and my Bachelor's degree from
+                    <strong>Southeast University (SEU)</strong>. Previously, I worked as an Algorithm Engineer at Baidu,
+                    Sany, and Beike.
+                </p>
+                <p>My research interests lie at the intersection of <strong>Embodied AI</strong>, <strong>Humanoid
+                        Robotics</strong>, and <strong>Computer Vision</strong>. I am dedicated to tackling complex
+                    engineering systems, with extensive practical experience in <strong>Reinforcement Learning
+                        (RL)</strong>, <strong>Teleoperation System</strong>,
+                    and <strong>Vision-Language-Action (VLA)</strong> model deployments.</p>
+
+                <div class="contact-links">
+                    <a href="mailto:lema933308@gmail.com">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        Email
+                    </a>
+                    <a href="https://github.com/le-ma-3308" target="_blank">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        GitHub
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=AZpX2sYAAAAJ&hl=en" target="_blank">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 6L12 2L2 6l10 4l10-4zm-10 6v7.5M17.5 7.8v4.6a5.5 5.5 0 0 1-11 0V7.8m11 0" />
+                        </svg>
+                        Google Scholar
+                    </a>
+                </div>
             </div>
         </div>
+
+        <section id="research">
+            <h3>Research & Projects</h3>
+
+            <div class="pub-item">
+                <div class="pub-img">
+                    <img src="assets/images/teaser_styleloco.png" alt="StyleLoco Teaser">
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title"><a href="https://arxiv.org/abs/2503.15082" target="_blank">StyleLoco:
+                            Generative Adversarial Distillation for Natural Humanoid Robot Locomotion</a></h4>
+                    <p class="pub-authors"><a href="https://le-ma-3308.github.io/" target="_blank" class="me">Le
+                            Ma*</a>,
+                        <a href="https://github.com/zy-meng" target="_blank">Ziyu Meng*</a>, <a
+                            href="https://tengyu.ai/" target="_blank">Tengyu Liu</a>, Yuhan Li, <a
+                            href="https://faculty.sdu.edu.cn/songran/en/index.htm" target="_blank">Ran Song</a>, <a
+                            href="https://scholar.google.com/citations?user=qCWuPHsAAAAJ&hl=" target="_blank">Wei
+                            Zhang</a>, <a href="https://siyuanhuang.com/" target="_blank">Siyuan Huang</a>
+                    </p>
+                    <span class="pub-venue">arXiv, 2025</span>
+                    <p class="pub-desc">We introduce StyleLoco, a novel two-stage framework that bridges the gap between
+                        expert policies and human datasets through a Generative Adversarial Distillation (GAD) process.
+                        This approach enables humanoid robots to perform diverse locomotion tasks with high precision
+                        and natural human-like aesthetics.</p>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2503.15082" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            Paper
+                        </a>
+                        <a href="https://styleloco.github.io/" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                </path>
+                            </svg>
+                            Project Page
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-img">
+                    <object data="assets/images/teaser_safefall.pdf" type="application/pdf" width="100%" height="100%">
+                        <img src="assets/images/safefall_teaser.png" alt="SafeFall Teaser">
+                    </object>
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title"><a href="https://arxiv.org/abs/2511.18509" target="_blank">SafeFall: Learning
+                            Protective Control for Humanoid Robots</a></h4>
+                    <p class="pub-authors"><a href="https://github.com/zy-meng" target="_blank">Ziyu Meng*</a>, <a
+                            href="https://tengyu.ai/" target="_blank">Tengyu Liu*</a>, <a
+                            href="https://le-ma-3308.github.io/" target="_blank" class="me">Le Ma</a>,
+                        Yingying Wu, <a href="https://faculty.sdu.edu.cn/songran/en/index.htm" target="_blank">Ran
+                            Song</a>, <a href="https://scholar.google.com/citations?user=qCWuPHsAAAAJ&hl="
+                            target="_blank">Wei Zhang</a>, <a href="https://siyuanhuang.com/" target="_blank">Siyuan
+                            Huang</a></p>
+                    <span class="pub-venue">arXiv, 2025</span>
+                    <p class="pub-desc">We present SafeFall, a framework that learns to predict imminent, unavoidable
+                        falls and execute protective maneuvers to minimize hardware damage. The policy is trained with a
+                        novel, damage-aware reward function that shields critical components and absorbs energy with
+                        robust body parts.</p>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2511.18509" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            Paper
+                        </a>
+                        <a href="https://safefall.github.io/" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                </path>
+                            </svg>
+                            Project Page
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </section>
+
+
+
+        <footer>
+            <p>&copy; 2026 Le Ma. All rights reserved.</p>
+        </footer>
     </div>
 
-    <section id="research">
-        <h3>Research & Projects</h3>
-
-        <div class="pub-item">
-            <div class="pub-img">
-                Teaser Image
-            </div>
-            <div class="pub-content">
-                <p class="pub-title">RSS 2026 Submission (In Preparation)</p>
-                <p class="pub-authors"><span class="me">Your Name</span>, Co-author 1, Co-author 2</p>
-                <p class="pub-venue">Robotics: Science and Systems (RSS), 2026</p>
-                <p class="pub-desc">Focusing on novel frameworks for humanoid robot control and motion architectures. Finalizing the paper drafting, teaser design, and acknowledgement formatting.</p>
-                <div class="pub-links">
-                    <a href="#">PDF (Coming Soon)</a>
-                    <a href="#">Project Page</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="pub-item">
-            <div class="pub-img">
-                Teleop System
-            </div>
-            <div class="pub-content">
-                <p class="pub-title">Closed-Loop Teleoperation & VLA Data Pipeline for Unitree G1</p>
-                <p class="pub-authors">Independent Project / Collaboration</p>
-                <p class="pub-venue">Embodied AI Systems</p>
-                <p class="pub-desc">Engineered a teleoperation system utilizing PICO VR headsets. Addressed critical motion retargeting challenges for operators of varying heights to establish a stable and high-quality Vision-Language-Action (VLA) data collection pipeline.</p>
-                <div class="pub-links">
-                    <a href="#">Code</a>
-                    <a href="#">Video</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="pub-item">
-            <div class="pub-img">
-                Mamba+FSQ
-            </div>
-            <div class="pub-content">
-                <p class="pub-title">Continuous Motion Control Policy via Mamba and FSQ</p>
-                <p class="pub-authors">Motion Control Architecture</p>
-                <p class="pub-venue">Technical Research</p>
-                <p class="pub-desc">Investigating state-space models (Mamba) combined with Finite Scalar Quantization (FSQ) to optimize low-level control policies. The goal is to significantly enhance the dynamic response and continuity of humanoid motions.</p>
-                <div class="pub-links">
-                    <a href="#">Notes</a>
-                    <a href="#">GitHub</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="pub-item">
-            <div class="pub-img">
-                SolidWorks
-            </div>
-            <div class="pub-content">
-                <p class="pub-title">Hardware-Software Integration & 3D Modeling</p>
-                <p class="pub-authors">Hardware Design</p>
-                <p class="pub-venue">Engineering Practice</p>
-                <p class="pub-desc">Proficient in processing SLDPRT files and utilizing SolidWorks for mechanical evaluation, ensuring tight integration between control algorithms and physical constraints.</p>
-            </div>
-        </div>
-
-    </section>
-
-    <section id="experience">
-        <h3>Experience</h3>
-        
-        <div class="exp-item">
-            <div class="exp-header">
-                <div class="exp-title">Independent Robotics Researcher</div>
-                <div class="exp-meta">Present</div>
-            </div>
-            <p style="margin: 0.5rem 0 0 0; color: #586069; font-size: 0.95rem;">Focusing on humanoid robotics, motion control algorithms, and embodied AI infrastructure using tools like Google Antigravity IDE.</p>
-        </div>
-
-        <div class="exp-item">
-            <div class="exp-header">
-                <div class="exp-title">Private Equity Operations & Management</div>
-                <div class="exp-meta">Previous</div>
-            </div>
-            <p style="margin: 0.5rem 0 0 0; color: #586069; font-size: 0.95rem;">Directed the full lifecycle of private equity securities, including product issuance, operations, information disclosure, and trading execution.</p>
-        </div>
-    </section>
-
-    <footer style="text-align: center; margin-top: 4rem; color: #6a737d; font-size: 0.9rem; border-top: 1px solid #eaecef; padding-top: 2rem;">
-        <p>&copy; 2026 你的名字. All rights reserved.</p>
-    </footer>
-
 </body>
+
 </html>
